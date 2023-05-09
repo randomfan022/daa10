@@ -1,36 +1,51 @@
-import numpy as np
-theta = 1
-epoch = 3
-class Perceptron(object):
-    def __init__(self, input_size, learning_rate=0.2):
-      self.learning_rate = learning_rate
-      self.weights = np.zeros(input_size + 1)
-    def predict(self, x):
-      return (np.dot(x, self.weights[1:]) + self.weights[0])
-    def train(self, x, y, weights):
-        for inputs, label in zip(x, y):
-          net_in = self.predict(inputs)
-        if net_in > theta:
-          y_out = 1
-        elif net_in < -theta:
-          y_out = -1
-        else:
-          y_out = 0
-        if y_out != label:
-          self.weights[1:] += self.learning_rate * label * inputs
-          self.weights[0] += self.learning_rate * label
-        print(inputs, net_in, label, y_out, self.weights)
-if __name__ == "__main__":
-  x = []
-  x.append(np.array([1, 1]))
-  x.append(np.array([1, -1]))
-  x.append(np.array([-1, 1]))
-  x.append(np.array([-1, -1]))
-  y = np.array([1, -1, -1, -1])
-perceptron = Perceptron(2)
-for i in range(epoch):
-    print("Epoch",i)
-    print("X1 X2 ", " Net ", " T ", " Y ", " B Weights")
-    weights = perceptron.weights
-    print("Initial Weights", weights)
-    perceptron.train(x, y, weights)
+n <- as.integer(readline(prompt = "enter no of employees"))
+
+empid <- vector(mode = "character", length = n)
+empname <- vector(mode = "character", length = n)
+doj <- vector(mode = "character", length = n)
+dept <- vector(mode = "character", length = n)
+desig <- vector(mode = "character", length = n)
+
+print("enter empid")
+
+for(i in 1:n)
+  empid[i] = as.character(readline())
+
+print("enter empname")
+
+for(i in 1:n)
+  empname[i] = as.character(readline())
+
+print("enter doj")
+
+for(i in 1:n)
+  doj[i] = as.character(readline())
+
+print("enter dept")
+
+for(i in 1:n)
+  dept[i] = as.character(readline())
+
+print("enter desig")
+
+for(i in 1:n)
+  desig[i] = as.character(readline())
+
+employee <- data.frame(empid,empname,doj,dept,desig)
+
+print(employee)
+
+write.csv(employee,"emp.csv")
+
+read.csv("emp.csv")
+
+row <- data.frame("031","Zara","21/03/2020","HR","HR")
+
+write.table(row, "emp.csv", append = TRUE, sep = ",", row.names = TRUE, col.names = FALSE, quote = FALSE)
+
+read.csv("emp.csv")
+
+
+
+
+
